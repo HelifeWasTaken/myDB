@@ -32,7 +32,7 @@ namespace Json {
             /**
              * @brief Skips '\t' '\n' ' ' by moving _index
              */
-            void skipSpaces(void);
+            void skipSpaces();
 
         /* Parser/ParseBoolean.cpp */
         private:

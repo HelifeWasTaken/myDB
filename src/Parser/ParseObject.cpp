@@ -57,4 +57,3 @@ bool Json::Parser::parseObject(Json::Value& conf) {
     this->____MJsonParseObjectLoop(conf, objects);
     return true;
 }
-
