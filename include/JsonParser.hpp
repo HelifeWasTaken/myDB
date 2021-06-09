@@ -19,7 +19,7 @@ namespace Json {
             static const std::string NUMBER_TOKENS;
 
         /* Parser/ParseUtil.cpp */
-        private:
+        public:
             /**
              * @brief Check if the current character is one of the tokens
              *
@@ -35,7 +35,7 @@ namespace Json {
             void skipSpaces();
 
         /* Parser/ParseBoolean.cpp */
-        private:
+        public:
             /**
              * @brief Parse a Boolean value from a json
              *
@@ -46,7 +46,7 @@ namespace Json {
             bool parseBoolean(Json::Value& conf);
 
         /* Parser/ParseNull.cpp */
-        private:
+        public:
             /**
              * @brief Parse a null value from a json
              *
@@ -77,6 +77,8 @@ namespace Json {
              * @param originalValue The value to compute in
              */
             void ____MJsonParseFloatCompletely(double& FinalValue);
+        /* Parser/ParseNumber.cpp */
+        public:
             /**
              * @brief Parse a number from a json (If the value was well formed at start but gets a grammar problem in the middle throws)
              *        Example:
@@ -100,6 +102,8 @@ namespace Json {
              */
             void ____MJsonReadString(std::string& buffer);
 
+        /* Parser/ParseString.cpp */
+        public:
             /**
              * @brief Parse a string from a json (if the string was well formed at start but gets a grammar problem in the middle throws)
              *
@@ -118,7 +122,8 @@ namespace Json {
              * @param arr The array to append the values in
              */
             void ____MJsonReadArray(Json::Value& conf, Json::Value::Array& arr);
-
+        /* Parser/ParseArray.cpp */
+        public:
             /**
              * @brief Parse an array from a json (if the value was well formed at start but gets a grammar problem in the middle throws)
              *        A Json::Value::Array is in fact a Json::Value::std::vector<Json::Value>
@@ -146,6 +151,8 @@ namespace Json {
              * @param objects The Object to set the Key values
              */
             void ____MJsonParseObjectLoop(Json::Value& conf, Json::Value::Object& objects);
+        /* Parser/ParseObject.cpp */
+        public:
             /**
              * @brief Parse an object from a json (if the value was well formed at start but gets a grammar problem in the middle throws)
              *        A Json::Value::Object is in fact a Json::Value::std::map<std::string, Json::Value>
@@ -157,7 +164,7 @@ namespace Json {
             bool parseObject(Json::Value& conf);
 
         /* Parser/ParseValue.cpp */
-        private:
+        public:
             /**
              * @brief Call the good value parser to chose (might throw in one of them)
              *
@@ -173,16 +180,34 @@ namespace Json {
              * @param filename The pathfile of the json
              * @param conf The first JsonNode
              */
-            Parser(std::string& filename, Json::Value& conf);
+
+            Parser(std::string& filename);
+            /* Parser/Parser.cpp */
+            /**
+             * @brief Calls Json::Parser and read Json::Value
+             *
+             * @param filename The pathfile of the Json
+             * @return Returns the first node constructing the Json
+             */
+            Json::Value parse();
+            /**
+             * @brief Load the buffer of the json by reading a file
+             *        (it throws if any problem happend while reading the file such as empty unreadable or invalid file)
+             *
+             * @param filename The pathfile of the Json
+             * @return The instance of the class so doing the following can be possible: json.loadFromFile().parse();
+             *
+             */
+            Parser& loadFromFile(std::string& filename);
+            /*
+             * @brief Load the buffer of the json by reading the bufferMemory
+             *        (it throws if any problem happend while reading the bufferMemory such as empty buffer)
+             *
+             * @param buffer The bufferMemory that contains the JsonCode
+             * @return The instance of the class so doing the following can be possible: json.loadFromMemory().parse();
+             *
+             */
+            Parser& loadFromMemory(std::string& buffer);
     };
 
-    /* Parser/Parser.cpp */
-    /**
-     * @brief Calls Json::Parser and read Json::Value
-     *        (it throws if any problem happend while parsing the file such as empty unreadable or invalid file)
-     *
-     * @param filename The pathfile of the Json
-     * @return Returns the first node constructing the Json
-     */
-    Json::Value parseJson(std::string& filename);
 };
