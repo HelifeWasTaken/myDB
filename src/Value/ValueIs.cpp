@@ -1,0 +1,16 @@
+/**
+ * File              : ValueIs.cpp
+ * Author            : Mattis Dalleau <mattis.dalleau@epitech.eu>
+ * Date              : 09.06.2021
+ * Last Modified Date: 09.06.2021
+ * Last Modified By  : Mattis Dalleau <mattis.dalleau@epitech.eu>
+ */
+
+#include <JsonValue.hpp>
+
+const bool Json::Value::is(const Json::Value::ValueType& type) const {
+    return this->getType() == type;
+}
+const bool Json::Value::isNull() const {
+    return this->is(Json::Value::ValueType::JSONNULL);
+}
