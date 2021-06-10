@@ -8,12 +8,6 @@
 
 #include <JsonhlParser.hpp>
 
-static const std::string SPACES_TOKENS = " \t\n";
-static const std::string TRUE_TOKEN = "true";
-static const std::string FALSE_TOKEN = "false";
-static const std::string NULL_TOKEN = "null";
-static const std::string NUMBER_TOKENS = "0123456789+-";
-
 jsonhl::Parser::Parser() {}
 
 void jsonhl::Parser::unload() {

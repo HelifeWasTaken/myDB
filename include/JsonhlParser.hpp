@@ -19,11 +19,12 @@ namespace jsonhl {
             std::size_t _index = 0;
 
             /* Parser/Parser.cpp */
-            static const std::string SPACES_TOKENS;
-            static const std::string TRUE_TOKEN;
-            static const std::string FALSE_TOKEN;
-            static const std::string NULL_TOKEN;
-            static const std::string NUMBER_TOKENS;
+
+            inline static const std::string SPACES_TOKENS = " \t\n";
+            inline static const std::string TRUE_TOKEN = "true";
+            inline static const std::string FALSE_TOKEN = "false";
+            inline static const std::string NULL_TOKEN = "null";
+            inline static const std::string NUMBER_TOKENS = "0123456789+-";
 
         /* Parser/ParseUtil.cpp */
         public:
