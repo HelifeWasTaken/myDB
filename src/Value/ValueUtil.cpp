@@ -6,7 +6,7 @@
  * Last Modified By  : Mattis Dalleau <mattis.dalleau@epitech.eu>
  */
 
-#include <JsonValue.hpp>
+#include <JsonhlValue.hpp>
 
 const char *jsonhl::Value::____MJsonValueToStr(const jsonhl::Value::ValueType &type) const
 {

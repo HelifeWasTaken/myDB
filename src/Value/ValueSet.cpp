@@ -6,7 +6,7 @@
  * Last Modified By  : Mattis Dalleau <mattis.dalleau@epitech.eu>
  */
 
-#include <JsonValue.hpp>
+#include <JsonhlValue.hpp>
 
 template <typename T>
 void jsonhl::Value::set(const T& value) {

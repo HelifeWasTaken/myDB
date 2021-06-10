@@ -5,7 +5,7 @@
  * Last Modified Date: 09.06.2021
  * Last Modified By  : Mattis Dalleau <mattis.dalleau@epitech.eu>
  */
-#include <JsonParser.hpp>
+#include <JsonhlParser.hpp>
 
 bool jsonhl::Parser::parseBoolean(jsonhl::Value& conf) {
     if (this->_buffer.compare(this->_index, TRUE_TOKEN.size(), TRUE_TOKEN) != 0) {

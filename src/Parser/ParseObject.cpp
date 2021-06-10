@@ -5,7 +5,7 @@
  * Last Modified Date: 09.06.2021
  * Last Modified By  : Mattis Dalleau <mattis.dalleau@epitech.eu>
  */
-#include <JsonParser.hpp>
+#include <JsonhlParser.hpp>
 
 void jsonhl::Parser::____MJsonObjectReadData(jsonhl::Value::Object& object) {
     jsonhl::Value value;

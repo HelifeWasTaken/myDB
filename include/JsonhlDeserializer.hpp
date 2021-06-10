@@ -1,5 +1,5 @@
 /**
- * File              : JsonDeserializer.hpp
+ * File              : JsonhlDeserializer.hpp
  * Author            : Mattis DALLEAU <mattisdalleau@gmail.com>
  * Date              : 10.06.2021
  * Last Modified Date: 10.06.2021
@@ -7,7 +7,7 @@
  */
 #pragma once
 
-#include <JsonParser.hpp>
+#include <JsonhlParser.hpp>
 
 namespace jsonhl {
 

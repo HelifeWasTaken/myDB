@@ -6,7 +6,7 @@
  * Last Modified By  : Mattis Dalleau <mattis.dalleau@epitech.eu>
  */
 
-#include <JsonValue.hpp>
+#include <JsonhlValue.hpp>
 
 const jsonhl::Value::ValueType& jsonhl::Value::getType() const {
     return this->_type;

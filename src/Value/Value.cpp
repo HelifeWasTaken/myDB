@@ -6,7 +6,7 @@
  * Last Modified By  : Mattis Dalleau <mattis.dalleau@epitech.eu>
  */
 
-#include <JsonValue.hpp>
+#include <JsonhlValue.hpp>
 
 jsonhl::Value::Value(const double& value) : _value(value), _type(jsonhl::Value::ValueType::DOUBLE) {}
 jsonhl::Value::Value(const int& value) { *this = Value(static_cast<double>(value)); }

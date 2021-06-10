@@ -6,7 +6,7 @@
  * Last Modified By  : Mattis Dalleau <mattis.dalleau@epitech.eu>
  */
 
-#include <JsonParser.hpp>
+#include <JsonhlParser.hpp>
 
 static const std::string SPACES_TOKENS = " \t\n";
 static const std::string TRUE_TOKEN = "true";

@@ -6,7 +6,7 @@
  * Last Modified By  : Mattis Dalleau <mattis.dalleau@epitech.eu>
  */
 
-#include <JsonValue.hpp>
+#include <JsonhlValue.hpp>
 
 const bool jsonhl::Value::is(const jsonhl::Value::ValueType& type) const {
     return this->getType() == type;

@@ -5,7 +5,7 @@
  * Last Modified Date: 10.06.2021
  * Last Modified By  : Mattis DALLEAU <mattisdalleau@gmail.com>
  */
-#include <JsonDeserializer.hpp>
+#include <JsonhlDeserializer.hpp>
 
 const bool jsonhl::Deserializer::has(std::string buffer) {
     jsonhl::Value conf = this->_value;

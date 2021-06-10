@@ -1,5 +1,5 @@
 /**
- * File              : JsonParser.hpp
+ * File              : JsonhlParser.hpp
  * Author            : Mattis DALLEAU <mattisdalleau@gmail.com>
  * Date              : 10.06.2021
  * Last Modified Date: 10.06.2021
@@ -7,7 +7,7 @@
  */
 #pragma once
 
-#include <JsonValue.hpp>
+#include <JsonhlValue.hpp>
 #include <fstream>
 
 namespace jsonhl {
