@@ -58,7 +58,7 @@ namespace jsonhl {
              * @brief Parse a null value from a json
              *
              * @param conf The current node of Json
-             * @return true Was a Valid null value
+             * @return true Was a valid null value
              * @return false Wasn't recognized safely as a null value
              */
             bool parseNull(jsonhl::Value& conf);
