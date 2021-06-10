@@ -21,7 +21,7 @@ const char *jsonhl::Value::____MJsonValueToStr(const jsonhl::Value::ValueType &t
 }
 
 template <typename T>
-jsonhl::Value::ValueType jsonhl::Value::____MGoodTypeOrThrow() const {
+const jsonhl::Value::ValueType jsonhl::Value::____MGoodTypeOrThrow() const {
     if constexpr(std::is_same_v<T, double>) return jsonhl::Value::ValueType::DOUBLE;
     else if constexpr(std::is_same_v<T, int>) return jsonhl::Value::ValueType::DOUBLE;
     else if constexpr(std::is_same_v<T, bool>) return jsonhl::Value::ValueType::BOOLEAN;

@@ -56,7 +56,7 @@ namespace jsonhl {
              * @return ValueType the type of the value
              */
             template <typename T>
-            ValueType ____MGoodTypeOrThrow() const;
+            const ValueType ____MGoodTypeOrThrow() const;
 
         /* Value/Value.cpp */
         public:
