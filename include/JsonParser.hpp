@@ -195,19 +195,19 @@ namespace Json {
              *        (it throws if any problem happend while reading the file such as empty unreadable or invalid file)
              *
              * @param filename The pathfile of the Json
-             * @return The instance of the class so doing the following can be possible: json.loadFromFile().parse();
+             * @return True if the file was readable and not empty
              *
              */
-            Parser& loadFromFile(std::string& filename);
+            bool loadFromFile(std::string& filename);
             /*
              * @brief Load the buffer of the json by reading the bufferMemory
              *        (it throws if any problem happend while reading the bufferMemory such as empty buffer)
              *
              * @param buffer The bufferMemory that contains the JsonCode
-             * @return The instance of the class so doing the following can be possible: json.loadFromMemory().parse();
+             * @return True if the buffer string was not empty
              *
              */
-            Parser& loadFromMemory(std::string& buffer);
+            bool loadFromMemory(std::string& buffer);
     };
 
 };
