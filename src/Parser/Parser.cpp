@@ -14,12 +14,14 @@ static const std::string FALSE_TOKEN = "false";
 static const std::string NULL_TOKEN = "null";
 static const std::string NUMBER_TOKENS = "0123456789+-";
 
-bool Json::Parser::loadFromMemory(std::string& buffer) {
+Json::Parser::Parser() {}
+
+bool Json::Parser::loadFromMemory(std::string buffer) {
     _buffer = buffer;
     return _buffer.empty() != true;
 }
 
-bool Json::Parser::loadFromFile(std::string& filename) {
+bool Json::Parser::loadFromFile(std::string filename) {
     std::getline(std::ifstream(filename),this->_buffer, '\0');
     return this->_buffer.empty() != true;
 }

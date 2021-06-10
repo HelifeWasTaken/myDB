@@ -175,14 +175,11 @@ namespace Json {
         /* Parser/Parser.cpp */
         public:
             /**
-             * @brief Construct a new Parser object (it throws if the file could not be opened empty or if the Json was invalid)
-             *
-             * @param filename The pathfile of the json
-             * @param conf The first JsonNode
+             * @brief Construct a new Parser object
              */
-
-            Parser(std::string& filename);
-            /* Parser/Parser.cpp */
+            Parser();
+        /* Parser/Parser.cpp */
+        public:
             /**
              * @brief Calls Json::Parser and read Json::Value
              *
@@ -198,7 +195,7 @@ namespace Json {
              * @return True if the file was readable and not empty
              *
              */
-            bool loadFromFile(std::string& filename);
+            bool loadFromFile(std::string filename);
             /*
              * @brief Load the buffer of the json by reading the bufferMemory
              *        (it throws if any problem happend while reading the bufferMemory such as empty buffer)
@@ -207,7 +204,7 @@ namespace Json {
              * @return True if the buffer string was not empty
              *
              */
-            bool loadFromMemory(std::string& buffer);
+            bool loadFromMemory(std::string buffer);
     };
 
 };
