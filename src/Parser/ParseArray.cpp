@@ -7,14 +7,14 @@
  */
 #include <JsonParser.hpp>
 
-void Json::Parser::____MJsonReadArray(Json::Value& conf, Json::Value::Array& arr) {
-    Json::Value tmp;
+void jsonhl::Parser::____MJsonReadArray(jsonhl::Value& conf, jsonhl::Value::Array& arr) {
+    jsonhl::Value tmp;
 
     while (this->_buffer.at(this->_index)) {
         this->skipSpaces();
         if (this->_buffer.at(this->_index) == ']') {
             this->_index++;
-            conf = Json::Value(arr);
+            conf = jsonhl::Value(arr);
             return;
         }
         if (this->_buffer.at(this->_index) != ',')
@@ -22,14 +22,14 @@ void Json::Parser::____MJsonReadArray(Json::Value& conf, Json::Value::Array& arr
         this->_index++;
         this->parseValue(tmp);
         arr.push_back(tmp);
-        tmp = Json::Value();
+        tmp = jsonhl::Value();
     }
     throw std::runtime_error("Expected ']' at the end of the array");
 }
 
-bool Json::Parser::parseArray(Json::Value& conf) {
-    Json::Value tmp;
-    Json::Value::Array arr;
+bool jsonhl::Parser::parseArray(jsonhl::Value& conf) {
+    jsonhl::Value tmp;
+    jsonhl::Value::Array arr;
 
     if (this->_buffer.at(this->_index) != ']')
         return false;
@@ -37,7 +37,7 @@ bool Json::Parser::parseArray(Json::Value& conf) {
     this->skipSpaces();
     if (this->_buffer.at(this->_index) == ']') {
         this->_index++;
-        conf = Json::Value(arr);
+        conf = jsonhl::Value(arr);
         return true;
     }
     this->parseValue(tmp);

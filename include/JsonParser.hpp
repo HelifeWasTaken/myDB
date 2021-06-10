@@ -10,7 +10,7 @@
 #include <JsonValue.hpp>
 #include <fstream>
 
-namespace Json {
+namespace jsonhl {
 
     class Parser {
 
@@ -50,7 +50,7 @@ namespace Json {
              * @return true Was a valid Json boolean value
              * @return false Wasn't recognized safely as a boolean value
              */
-            bool parseBoolean(Json::Value& conf);
+            bool parseBoolean(jsonhl::Value& conf);
 
         /* Parser/ParseNull.cpp */
         public:
@@ -61,7 +61,7 @@ namespace Json {
              * @return true Was a Valid null value
              * @return false Wasn't recognized safely as a null value
              */
-            bool parseNull(Json::Value& conf);
+            bool parseNull(jsonhl::Value& conf);
 
         /* Parser/ParseNumber.cpp */
         private:
@@ -97,7 +97,7 @@ namespace Json {
              * @return true Was a valid Json number
              * @return false Wasn't recognized safely as JsonNumber
              */
-            bool parseNumber(Json::Value& conf);
+            bool parseNumber(jsonhl::Value& conf);
 
         /* Parser/ParseString.cpp */
         private:
@@ -118,7 +118,7 @@ namespace Json {
              * @return true Was a valid Json String
              * @return false Wasn't recognized safely as JsonString
              */
-            bool parseString(Json::Value& conf);
+            bool parseString(jsonhl::Value& conf);
 
         /* Parser/ParseArray.cpp */
         private:
@@ -128,27 +128,27 @@ namespace Json {
              * @param conf The current Json Node
              * @param arr The array to append the values in
              */
-            void ____MJsonReadArray(Json::Value& conf, Json::Value::Array& arr);
+            void ____MJsonReadArray(jsonhl::Value& conf, jsonhl::Value::Array& arr);
         /* Parser/ParseArray.cpp */
         public:
             /**
              * @brief Parse an array from a json (if the value was well formed at start but gets a grammar problem in the middle throws)
-             *        A Json::Value::Array is in fact a Json::Value::std::vector<Json::Value>
+             *        A jsonhl::Value::Array is in fact a jsonhl::Value::std::vector<jsonhl::Value>
              *
              * @param conf The current node of Json
              * @return true Was a valid JsonArray
              * @return false Wasn't recognized safely as a JsonArray
              */
-            bool parseArray(Json::Value& conf);
+            bool parseArray(jsonhl::Value& conf);
 
         /* Parser/ParseObject.cpp */
         private:
             /**
-             * @brief This is used to gather one data from a Object it parses a Json::Value::ValueType::STRING and a Json::Value (any ?)
+             * @brief This is used to gather one data from a Object it parses a jsonhl::Value::ValueType::STRING and a jsonhl::Value (any ?)
              *        This might throw if the string parsed or the value is badly written
              * @param object The object to write in
              */
-            void ____MJsonObjectReadData(Json::Value::Object& object);
+            void ____MJsonObjectReadData(jsonhl::Value::Object& object);
             /**
              * @brief Loop to call this->____MJsonObjectReadData until all the objects are read
              *        (It mights throws if the object is not well written) Notable
@@ -157,18 +157,18 @@ namespace Json {
              * @param conf The current Json Node
              * @param objects The Object to set the Key values
              */
-            void ____MJsonParseObjectLoop(Json::Value& conf, Json::Value::Object& objects);
+            void ____MJsonParseObjectLoop(jsonhl::Value& conf, jsonhl::Value::Object& objects);
         /* Parser/ParseObject.cpp */
         public:
             /**
              * @brief Parse an object from a json (if the value was well formed at start but gets a grammar problem in the middle throws)
-             *        A Json::Value::Object is in fact a Json::Value::std::map<std::string, Json::Value>
+             *        A jsonhl::Value::Object is in fact a jsonhl::Value::std::map<std::string, jsonhl::Value>
              *
              * @param conf The current node of Json
              * @return true Was a valid JsonObject
              * @return false Wasn't recognized safely as a JsonObject
              */
-            bool parseObject(Json::Value& conf);
+            bool parseObject(jsonhl::Value& conf);
 
         /* Parser/ParseValue.cpp */
         public:
@@ -177,7 +177,7 @@ namespace Json {
              *
              * @param conf The current JsonNode
              */
-            void parseValue(Json::Value& conf);
+            void parseValue(jsonhl::Value& conf);
 
         /* Parser/Parser.cpp */
         public:
@@ -188,12 +188,12 @@ namespace Json {
         /* Parser/Parser.cpp */
         public:
             /**
-             * @brief Calls Json::Parser and read Json::Value
+             * @brief Calls jsonhl::Parser and read jsonhl::Value
              *
              * @param filename The pathfile of the Json
              * @return Returns the first node constructing the Json
              */
-            Json::Value parse();
+            jsonhl::Value parse();
             /**
              * @brief Load the buffer of the json by reading a file (calls unload before loading the new buffer)
              *        (it throws if any problem happend while reading the file such as empty unreadable or invalid file)

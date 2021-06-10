@@ -7,7 +7,7 @@
  */
 #include <JsonParser.hpp>
 
-void Json::Parser::parseValue(Json::Value& conf) {
+void jsonhl::Parser::parseValue(jsonhl::Value& conf) {
     if (this->parseObject(conf) == true) return;
     else if (this->parseBoolean(conf) == true) return;
     else if (this->parseNull(conf) == true) return;

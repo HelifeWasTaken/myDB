@@ -7,8 +7,8 @@
  */
 #include <JsonParser.hpp>
 
-void Json::Parser::____MJsonObjectReadData(Json::Value::Object& object) {
-    Json::Value value;
+void jsonhl::Parser::____MJsonObjectReadData(jsonhl::Value::Object& object) {
+    jsonhl::Value value;
     std::string key;
 
     this->skipSpaces();
@@ -25,7 +25,7 @@ void Json::Parser::____MJsonObjectReadData(Json::Value::Object& object) {
     object[key] = value;
 }
 
-void Json::Parser::____MJsonParseObjectLoop(Json::Value& conf, Json::Value::Object& objects) {
+void jsonhl::Parser::____MJsonParseObjectLoop(jsonhl::Value& conf, jsonhl::Value::Object& objects) {
     this->____MJsonObjectReadData(objects);
     while (this->_buffer.at(this->_index)) {
         this->skipSpaces();
@@ -42,8 +42,8 @@ void Json::Parser::____MJsonParseObjectLoop(Json::Value& conf, Json::Value::Obje
     throw std::runtime_error("Expected '}' at the end of the object");
 }
 
-bool Json::Parser::parseObject(Json::Value& conf) {
-    Json::Value::Object objects;
+bool jsonhl::Parser::parseObject(jsonhl::Value& conf) {
+    jsonhl::Value::Object objects;
 
     if (this->_buffer.at(this->_index) != '{')
         return false;

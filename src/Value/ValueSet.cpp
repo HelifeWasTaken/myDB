@@ -9,6 +9,6 @@
 #include <JsonValue.hpp>
 
 template <typename T>
-void Json::Value::set(const T& value) {
-    *this = Json::Value(value);
+void jsonhl::Value::set(const T& value) {
+    *this = jsonhl::Value(value);
 }

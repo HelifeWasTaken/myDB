@@ -14,28 +14,28 @@ static const std::string FALSE_TOKEN = "false";
 static const std::string NULL_TOKEN = "null";
 static const std::string NUMBER_TOKENS = "0123456789+-";
 
-Json::Parser::Parser() {}
+jsonhl::Parser::Parser() {}
 
-void Json::Parser::unload() {
+void jsonhl::Parser::unload() {
     if (this->_buffer.empty() == false)
         this->_buffer.clear();
     this->_index = 0;
 }
 
-bool Json::Parser::loadFromMemory(std::string buffer) {
+bool jsonhl::Parser::loadFromMemory(std::string buffer) {
     this->unload();
     _buffer = buffer;
     return _buffer.empty() != true;
 }
 
-bool Json::Parser::loadFromFile(std::string filename) {
+bool jsonhl::Parser::loadFromFile(std::string filename) {
     this->unload();
     std::getline(std::ifstream(filename),this->_buffer, '\0');
     return this->_buffer.empty() != true;
 }
 
-Json::Value Json::Parser::parse() {
-    Json::Value value;
+jsonhl::Value jsonhl::Parser::parse() {
+    jsonhl::Value value;
 
     if (this->_buffer.empty())
         throw std::runtime_error("You are trying to load a Json from an empty buffer");

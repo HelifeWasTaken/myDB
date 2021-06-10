@@ -8,33 +8,33 @@
 
 #include <JsonValue.hpp>
 
-const Json::Value::ValueType& Json::Value::getType() const {
+const jsonhl::Value::ValueType& jsonhl::Value::getType() const {
     return this->_type;
 }
-const Json::Value::ValueHolder& Json::Value::getValue() const {
+const jsonhl::Value::ValueHolder& jsonhl::Value::getValue() const {
     return this->_value;
 }
-const double& Json::Value::getDouble() const {
+const double& jsonhl::Value::getDouble() const {
     return std::get<double>(this->_value);
 }
-const std::int64_t Json::Value::getInteger() const {
+const std::int64_t jsonhl::Value::getInteger() const {
     return static_cast<int64_t>(this->getDouble());
 }
-const bool& Json::Value::getBool() const {
+const bool& jsonhl::Value::getBool() const {
     return std::get<bool>(this->_value);
 }
-const std::string& Json::Value::getStr() const {
+const std::string& jsonhl::Value::getStr() const {
     return std::get<std::string>(this->_value);
 }
-const Json::Value::Object& Json::Value::getObject() const {
-    return std::get<Json::Value::Object>(this->_value);
+const jsonhl::Value::Object& jsonhl::Value::getObject() const {
+    return std::get<jsonhl::Value::Object>(this->_value);
 }
-const Json::Value::Array& Json::Value::getArray() const {
-    return std::get<Json::Value::Array>(this->_value);
+const jsonhl::Value::Array& jsonhl::Value::getArray() const {
+    return std::get<jsonhl::Value::Array>(this->_value);
 }
-const Json::Value& Json::Value::operator[](std::string varName) const {
+const jsonhl::Value& jsonhl::Value::operator[](std::string varName) const {
     return this->getObject().at(varName);
 }
-const Json::Value& Json::Value::operator[](int varIndex) const {
+const jsonhl::Value& jsonhl::Value::operator[](int varIndex) const {
     return this->getArray().at(varIndex);
 }

@@ -7,10 +7,10 @@
  */
 #include <JsonParser.hpp>
 
-bool Json::Parser::parseNull(Json::Value& conf) {
+bool jsonhl::Parser::parseNull(jsonhl::Value& conf) {
     if (this->_buffer.compare(this->_index, NULL_TOKEN.size(), NULL_TOKEN) != 0)
         return false;
     this->_index += 4;
-    conf = Json::Value();
+    conf = jsonhl::Value();
     return true;
 }

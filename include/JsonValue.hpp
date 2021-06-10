@@ -14,7 +14,7 @@
 #include <iostream>
 #include <variant>
 
-namespace Json {
+namespace jsonhl {
 
     class Value {
         public:
@@ -45,12 +45,12 @@ namespace Json {
              * @brief Returns as a char * the name of the type currently used
              *
              * @param type The type used
-             * @return const char* The name of the type passing Json::Value::ValueType::STRING returns "STRING"
+             * @return const char* The name of the type passing jsonhl::Value::ValueType::STRING returns "STRING"
              */
             const char *____MJsonValueToStr(const ValueType &type) const;
 
             /**
-             * @brief Throws if the type passed in the constructor is invalid also returns the current type as Json::Value::ValueType
+             * @brief Throws if the type passed in the constructor is invalid also returns the current type as jsonhl::Value::ValueType
              *
              * @tparam T The value
              * @return ValueType the type of the value
@@ -117,7 +117,7 @@ namespace Json {
             ~Value();
 
             /**
-             * @brief Set the Json::Value value from Template (if a invalid type is chose it throws)
+             * @brief Set the jsonhl::Value value from Template (if a invalid type is chose it throws)
              */
 
         /* Value/ValueSet.cpp */
@@ -129,14 +129,14 @@ namespace Json {
         public:
 
             /**
-             * @brief Returns the Json::Value at the varName (throws if the value is not an Json::Value::Object)
+             * @brief Returns the jsonhl::Value at the varName (throws if the value is not an jsonhl::Value::Object)
              *
              * @return const Value&
              */
             const Value& operator[](std::string varName) const;
 
             /**
-             * @brief Returns the Json::Value at the varIndex (throws if the value is not an Json::Value::Array)
+             * @brief Returns the jsonhl::Value at the varIndex (throws if the value is not an jsonhl::Value::Array)
              *
              * @return const Value&
              */

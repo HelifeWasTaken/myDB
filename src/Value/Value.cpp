@@ -8,14 +8,14 @@
 
 #include <JsonValue.hpp>
 
-Json::Value::Value(const double& value) : _value(value), _type(Json::Value::ValueType::DOUBLE) {}
-Json::Value::Value(const int& value) { *this = Value(static_cast<double>(value)); }
-Json::Value::Value(const bool& value) : _value(value), _type(Json::Value::ValueType::BOOL) {}
-Json::Value::Value(const std::string& value) : _value(value), _type(Json::Value::ValueType::STRING) {}
-Json::Value::Value(const Json::Value::Array& value) : _value(value), _type(Json::Value::ValueType::ARRAY) {}
-Json::Value::Value(const Json::Value::Object& value) : _value(value), _type(Json::Value::ValueType::OBJECT) {}
+jsonhl::Value::Value(const double& value) : _value(value), _type(jsonhl::Value::ValueType::DOUBLE) {}
+jsonhl::Value::Value(const int& value) { *this = Value(static_cast<double>(value)); }
+jsonhl::Value::Value(const bool& value) : _value(value), _type(jsonhl::Value::ValueType::BOOL) {}
+jsonhl::Value::Value(const std::string& value) : _value(value), _type(jsonhl::Value::ValueType::STRING) {}
+jsonhl::Value::Value(const jsonhl::Value::Array& value) : _value(value), _type(jsonhl::Value::ValueType::ARRAY) {}
+jsonhl::Value::Value(const jsonhl::Value::Object& value) : _value(value), _type(jsonhl::Value::ValueType::OBJECT) {}
 template <typename T>
-Json::Value::Value(const T& value) : _value(value), _type(this->____MGoodTypeOrThrow<T>()) { }
-Json::Value::Value() : _value(nullptr), _type(Json::Value::ValueType::JSONNULL) {}
+jsonhl::Value::Value(const T& value) : _value(value), _type(this->____MGoodTypeOrThrow<T>()) { }
+jsonhl::Value::Value() : _value(nullptr), _type(jsonhl::Value::ValueType::JSONNULL) {}
 
-Json::Value::~Value() {}
+jsonhl::Value::~Value() {}

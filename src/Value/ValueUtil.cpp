@@ -8,7 +8,7 @@
 
 #include <JsonValue.hpp>
 
-const char *Json::Value::____MJsonValueToStr(const Json::Value::ValueType &type) const
+const char *jsonhl::Value::____MJsonValueToStr(const jsonhl::Value::ValueType &type) const
 {
     switch (type) {
         case DOUBLE: return "float";
@@ -21,13 +21,13 @@ const char *Json::Value::____MJsonValueToStr(const Json::Value::ValueType &type)
 }
 
 template <typename T>
-Json::Value::ValueType Json::Value::____MGoodTypeOrThrow() const {
-    if constexpr(std::is_same_v<T, double>) return Json::Value::ValueType::DOUBLE;
-    else if constexpr(std::is_same_v<T, int>) return Json::Value::ValueType::DOUBLE;
-    else if constexpr(std::is_same_v<T, bool>) return Json::Value::ValueType::BOOLEAN;
-    else if constexpr(std::is_same_v<T, std::string>) return Json::Value::ValueType::STRING;
-    else if constexpr(std::is_same_v<T, Json::Value::Object>) return Json::Value::ValueType::OBJECT;
-    else if constexpr(std::is_same_v<T, Json::Value::ARRAY>) return Json::Value::ValueType::ARRAY;
-    else if constexpr(std::is_same_v<T, void *>) return Json::Value::ValueType::JSONNULL;
-    else throw std::runtime_error("Maybe invalid use of Json::Value::set<T>");
+jsonhl::Value::ValueType jsonhl::Value::____MGoodTypeOrThrow() const {
+    if constexpr(std::is_same_v<T, double>) return jsonhl::Value::ValueType::DOUBLE;
+    else if constexpr(std::is_same_v<T, int>) return jsonhl::Value::ValueType::DOUBLE;
+    else if constexpr(std::is_same_v<T, bool>) return jsonhl::Value::ValueType::BOOLEAN;
+    else if constexpr(std::is_same_v<T, std::string>) return jsonhl::Value::ValueType::STRING;
+    else if constexpr(std::is_same_v<T, jsonhl::Value::Object>) return jsonhl::Value::ValueType::OBJECT;
+    else if constexpr(std::is_same_v<T, jsonhl::Value::ARRAY>) return jsonhl::Value::ValueType::ARRAY;
+    else if constexpr(std::is_same_v<T, void *>) return jsonhl::Value::ValueType::JSONNULL;
+    else throw std::runtime_error("Maybe invalid use of jsonhl::Value::set<T>");
 }

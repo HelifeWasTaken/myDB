@@ -7,16 +7,16 @@
  */
 #include <JsonParser.hpp>
 
-bool Json::Parser::parseBoolean(Json::Value& conf) {
+bool jsonhl::Parser::parseBoolean(jsonhl::Value& conf) {
     if (this->_buffer.compare(this->_index, TRUE_TOKEN.size(), TRUE_TOKEN) != 0) {
         if (this->_buffer.compare(this->_index, FALSE_TOKEN.size(), FALSE_TOKEN) != 0) {
             return false;
         }
         this->_index += FALSE_TOKEN.size();
-        conf = Json::Value(false);
+        conf = jsonhl::Value(false);
         return true;
     }
     this->_index += TRUE_TOKEN.size();
-    conf = Json::Value(true);
+    conf = jsonhl::Value(true);
     return true;
 }

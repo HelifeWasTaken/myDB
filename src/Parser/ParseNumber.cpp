@@ -7,7 +7,7 @@
  */
 #include <JsonParser.hpp>
 
-void Json::Parser::____MJsonStrtod(double& value) {
+void jsonhl::Parser::____MJsonStrtod(double& value) {
     if (std::isdigit(this->_buffer.at(this->_index)) == false)
         throw std::runtime_error("Invalid value while Parsing digits");
     for (; this->_index < this->_buffer.size() &&
@@ -16,7 +16,7 @@ void Json::Parser::____MJsonStrtod(double& value) {
     }
 }
 
-void Json::Parser::____MJsonParseExponent(double& originalValue) {
+void jsonhl::Parser::____MJsonParseExponent(double& originalValue) {
     bool negative = false;
     double value = 0;
 
@@ -36,7 +36,7 @@ void Json::Parser::____MJsonParseExponent(double& originalValue) {
     }
 }
 
-void Json::Parser::____MJsonParseFloatCompletely(double& FinalValue) {
+void jsonhl::Parser::____MJsonParseFloatCompletely(double& FinalValue) {
     bool minus = false;
     double value = 0;
     double divisor = 0;
@@ -65,7 +65,7 @@ void Json::Parser::____MJsonParseFloatCompletely(double& FinalValue) {
         throw std::runtime_error("Could not parse Float");
 }
 
-bool Json::Parser::parseNumber(Json::Value& conf) {
+bool jsonhl::Parser::parseNumber(jsonhl::Value& conf) {
     bool minus = false;
     double FinalValue = 0;
 
@@ -81,6 +81,6 @@ bool Json::Parser::parseNumber(Json::Value& conf) {
         this->____MJsonParseExponent(FinalValue);
     if (minus)
         FinalValue = -FinalValue;
-    conf = Json::Value(FinalValue);
+    conf = jsonhl::Value(FinalValue);
     return true;
 }

@@ -8,9 +8,9 @@
 
 #include <JsonValue.hpp>
 
-const bool Json::Value::is(const Json::Value::ValueType& type) const {
+const bool jsonhl::Value::is(const jsonhl::Value::ValueType& type) const {
     return this->getType() == type;
 }
-const bool Json::Value::isNull() const {
-    return this->is(Json::Value::ValueType::JSONNULL);
+const bool jsonhl::Value::isNull() const {
+    return this->is(jsonhl::Value::ValueType::JSONNULL);
 }

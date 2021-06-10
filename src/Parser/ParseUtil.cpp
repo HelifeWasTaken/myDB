@@ -7,10 +7,10 @@
  */
 #include <JsonParser.hpp>
 
-bool Json::Parser::isToken(char const& c, const std::string& tokens) const {
+bool jsonhl::Parser::isToken(char const& c, const std::string& tokens) const {
     return tokens.find(c) != std::string::npos;
 }
-void Json::Parser::skipSpaces() {
+void jsonhl::Parser::skipSpaces() {
     for (; this->_index < this->_buffer.size() &&
         this->isToken(this->_buffer.at(this->_index), this->SPACES_TOKENS); this->_index++);
 }

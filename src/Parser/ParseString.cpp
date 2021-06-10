@@ -7,7 +7,7 @@
  */
 #include <JsonParser.hpp>
 
-void Json::Parser::____MJsonReadString(std::string& buffer) {
+void jsonhl::Parser::____MJsonReadString(std::string& buffer) {
     while (this->_buffer.at(this->_index)) {
         if (this->_buffer.at(this->_index) == '\\') {
             this->_index++;
@@ -37,13 +37,13 @@ void Json::Parser::____MJsonReadString(std::string& buffer) {
     throw std::runtime_error("Expected '\"' to end the string");
 }
 
-bool Json::Parser::parseString(Json::Value& conf) {
+bool jsonhl::Parser::parseString(jsonhl::Value& conf) {
     std::string buffer;
 
     if (this->_buffer.at(this->_index) != '\"')
         return false;
     this->_index++;
     this->____MJsonReadString(buffer);
-    conf = Json::Value(buffer);
+    conf = jsonhl::Value(buffer);
     return true;
 }
