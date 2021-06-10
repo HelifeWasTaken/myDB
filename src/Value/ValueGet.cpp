@@ -32,3 +32,9 @@ const Json::Value::Object& Json::Value::getObject() const {
 const Json::Value::Array& Json::Value::getArray() const {
     return std::get<Json::Value::Array>(this->_value);
 }
+const Json::Value& Json::Value::operator[](std::string varName) const {
+    return this->getObject().at(varName);
+}
+const Json::Value& Json::Value::operator[](int varIndex) const {
+    return this->getArray().at(varIndex);
+}

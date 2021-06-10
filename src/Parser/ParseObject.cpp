@@ -13,12 +13,12 @@ void Json::Parser::____MJsonObjectReadData(Json::Value::Object& object) {
 
     this->skipSpaces();
     if (this->_buffer.at(this->_index) != '\"')
-        throw "Could not find the start of the Key";
+        throw std::runtime_error("Could not find the start of the Key");
     this->_index++;
     this->____MJsonReadString(key);
     this->skipSpaces();
     if (this->_buffer.at(this->_index) != '\"')
-        throw "Could not find the ':' determing the end of the Key";
+        throw std::runtime_error("Could not find the ':' determing the end of the Key");
     this->_index++;
     this->skipSpaces();
     this->parseValue(value);
@@ -34,12 +34,12 @@ void Json::Parser::____MJsonParseObjectLoop(Json::Value& conf, Json::Value::Obje
             this->_index++;
             return;
         } else if (this->_buffer.at(this->_index) != ',')
-            throw "expected ',' after value [object]";
+            throw std::runtime_error("expected ',' after value [object]");
         this->_index++;
         this->skipSpaces();
         this->____MJsonObjectReadData(objects);
     }
-    throw "Expected '}' at the end of the object";
+    throw std::runtime_error("Expected '}' at the end of the object");
 }
 
 bool Json::Parser::parseObject(Json::Value& conf) {

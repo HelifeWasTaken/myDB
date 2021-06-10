@@ -29,5 +29,5 @@ Json::Value::ValueType Json::Value::____MGoodTypeOrThrow() const {
     else if constexpr(std::is_same_v<T, Json::Value::Object>) return Json::Value::ValueType::OBJECT;
     else if constexpr(std::is_same_v<T, Json::Value::ARRAY>) return Json::Value::ValueType::ARRAY;
     else if constexpr(std::is_same_v<T, void *>) return Json::Value::ValueType::JSONNULL;
-    else throw "Maybe invalid use of Json::Value::set<T>";
+    else throw std::runtime_error("Maybe invalid use of Json::Value::set<T>");
 }

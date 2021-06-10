@@ -18,13 +18,13 @@ void Json::Parser::____MJsonReadArray(Json::Value& conf, Json::Value::Array& arr
             return;
         }
         if (this->_buffer.at(this->_index) != ',')
-            throw "Expected ',' after value [array]";
+            throw std::runtime_error("Expected ',' after value [array]");
         this->_index++;
         this->parseValue(tmp);
         arr.push_back(tmp);
         tmp = Json::Value();
     }
-    throw "Expected ']' at the end of the array";
+    throw std::runtime_error("Expected ']' at the end of the array");
 }
 
 bool Json::Parser::parseArray(Json::Value& conf) {

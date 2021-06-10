@@ -9,7 +9,7 @@
 
 void Json::Parser::____MJsonStrtod(double& value) {
     if (std::isdigit(this->_buffer.at(this->_index)) == false)
-        throw "Invalid value while Parsing digits";
+        throw std::runtime_error("Invalid value while Parsing digits");
     for (; this->_index < this->_buffer.size() &&
         std::isdigit(this->_buffer.at(this->_index) == true); this->_index++) {
         value = value * 10 + (this->_buffer.at(this->_index) - '0');
@@ -23,7 +23,7 @@ void Json::Parser::____MJsonParseExponent(double& originalValue) {
     this->_index++;
     if (this->_buffer.at(this->_index) != '+') {
         if (this->_buffer.at(this->_index) != '-')
-            throw "Failed while Parsing exponent";
+            throw std::runtime_error("Failed while Parsing exponent");
         negative = true;
     }
     this->_index++;
@@ -62,7 +62,7 @@ void Json::Parser::____MJsonParseFloatCompletely(double& FinalValue) {
             value = -value;
         FinalValue = value;
     } else
-        throw "Could not parse Float";
+        throw std::runtime_error("Could not parse Float");
 }
 
 bool Json::Parser::parseNumber(Json::Value& conf) {

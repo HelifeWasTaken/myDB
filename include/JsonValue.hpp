@@ -120,6 +120,20 @@ namespace Json {
 
         /* Value/ValueGet.cpp */
         public:
+
+            /**
+             * @brief Returns the Json::Value at the varName (throws if the value is not an Json::Value::Object)
+             *
+             * @return const Value&
+             */
+            const Value& operator[](std::string varName) const;
+
+            /**
+             * @brief Returns the Json::Value at the varIndex (throws if the value is not an Json::Value::Array)
+             *
+             * @return const Value&
+             */
+            const Value& operator[](int varIndex) const;
             /**
              * @brief Get the Type object
              *

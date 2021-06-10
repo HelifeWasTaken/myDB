@@ -14,5 +14,5 @@ void Json::Parser::parseValue(Json::Value& conf) {
     else if (this->parseString(conf) == true) return;
     else if (this->parseNumber(conf) == true) return;
     else if (this->parseArray(conf) == true) return;
-    else throw "Is not a Json Type";
+    else throw std::runtime_error("Is not a Json Type");
 }

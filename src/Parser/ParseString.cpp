@@ -12,7 +12,7 @@ void Json::Parser::____MJsonReadString(std::string& buffer) {
         if (this->_buffer.at(this->_index) == '\\') {
             this->_index++;
             if (!this->_buffer.at(this->_index))
-                throw "Got out of bounds while parsing escape code";
+                throw std::runtime_error("Got out of bounds while parsing escape code");
             switch (this->_buffer.at(this->_index)) {
             case '"': buffer.append("\""); break;
             case '\\': buffer.append("\\"); break;
@@ -34,7 +34,7 @@ void Json::Parser::____MJsonReadString(std::string& buffer) {
         buffer.append(1, this->_buffer.at(this->_index));
         this->_index++;
     }
-    throw "Expected '\"' to end the string";
+    throw std::runtime_error("Expected '\"' to end the string");
 }
 
 bool Json::Parser::parseString(Json::Value& conf) {
