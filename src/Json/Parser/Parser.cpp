@@ -16,16 +16,11 @@ void jsonhl::Parser::unload() {
     this->_index = 0;
 }
 
-bool jsonhl::Parser::loadFromMemory(std::string buffer) {
+void jsonhl::Parser::loadBuffer(std::string& buffer) {
     this->unload();
-    _buffer = buffer;
-    return _buffer.empty() != true;
-}
-
-bool jsonhl::Parser::loadFromFile(std::string filename) {
-    this->unload();
-    std::getline(std::ifstream(filename),this->_buffer, '\0');
-    return this->_buffer.empty() != true;
+    this->_buffer = buffer;
+    if (_buffer.empty() == true)
+        throw std::runtime_error("The memory buffer is empty!");
 }
 
 jsonhl::Value jsonhl::Parser::parse() {

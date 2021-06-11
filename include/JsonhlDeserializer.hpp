@@ -71,6 +71,24 @@ namespace jsonhl {
              * @return false has not the node
              */
             const bool has(std::string buffer);
+            /**
+             * @brief Load the buffer of the json by reading a file (calls unload before loading the new buffer)
+             *        (it throws if any problem happend while reading the file such as empty unreadable or invalid file)
+             *        resets also _index to 0
+             *
+             * @param filename The pathfile of the Json
+             *
+             */
+            void loadFromFile(std::string filename);
+            /**
+             * @brief Load the buffer of the json by reading the bufferMemory (calls unload before loading the new buffer)
+             *        (it throws if any problem happend while reading the bufferMemory such as empty buffer)
+             *        resets also _index to 0
+             *
+             * @param buffer The bufferMemory that contains the JsonCode
+             *
+             */
+            void loadFromMemory(std::string buffer);
 
     };
 

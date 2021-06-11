@@ -11,5 +11,7 @@ const bool jsonhl::Deserializer::has(std::string buffer) {
     jsonhl::Value conf = this->_value;
     if (buffer.empty())
         throw std::runtime_error("Buffer is empty in jsonhl::Deserializer::has");
+    if (this->getValue().getType() == jsonhl::Value::ValueType::JSONNULL)
+        throw std::runtime_error("The json has wether only a null value or was not parsed yet");
     return this->____MgetInternal(buffer, conf);
 }

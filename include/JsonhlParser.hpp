@@ -196,32 +196,16 @@ namespace jsonhl {
              */
             jsonhl::Value parse();
             /**
-             * @brief Load the buffer of the json by reading a file (calls unload before loading the new buffer)
-             *        (it throws if any problem happend while reading the file such as empty unreadable or invalid file)
-             *        resets also _index to 0
-             *
-             * @param filename The pathfile of the Json
-             * @return True if the file was readable and not empty
-             *
-             */
-            bool loadFromFile(std::string filename);
-            /**
-             * @brief Load the buffer of the json by reading the bufferMemory (calls unload before loading the new buffer)
-             *        (it throws if any problem happend while reading the bufferMemory such as empty buffer)
-             *        resets also _index to 0
-             *
-             * @param buffer The bufferMemory that contains the JsonCode
-             * @return True if the buffer string was not empty
-             *
-             */
-            bool loadFromMemory(std::string buffer);
-
-            /**
              * @brief Empties the buffer (used for performance) -> Does nothing if the buffer is already empty
              *        resets also _index to 0
              *
              */
             void unload();
+            /**
+             * @brief Fills the buffer expects the buffer to be already checked
+             *
+             */
+            void loadBuffer(std::string& buffer);
     };
 
 };

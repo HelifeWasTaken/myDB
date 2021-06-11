@@ -17,7 +17,7 @@ void jsonhl::Parser::____MJsonObjectReadData(jsonhl::Value::Object& object) {
     this->_index++;
     this->____MJsonReadString(key);
     this->skipSpaces();
-    if (this->_buffer.at(this->_index) != '\"')
+    if (this->_buffer.at(this->_index) != ':')
         throw std::runtime_error("Could not find the ':' determing the end of the Key");
     this->_index++;
     this->skipSpaces();
@@ -49,7 +49,7 @@ bool jsonhl::Parser::parseObject(jsonhl::Value& conf) {
         return false;
     this->_index++;
     this->skipSpaces();
-    if (this->_buffer.at(this->_index) != '}') {
+    if (this->_buffer.at(this->_index) == '}') {
         this->_index++;
         conf = Value(objects);
         return true;

@@ -32,13 +32,14 @@ const bool jsonhl::Deserializer::____MgetObject(jsonhl::Value& actualNode, std::
     std::string::iterator endObject = it;
 
     if (actualNode.getType() != jsonhl::Value::ValueType::OBJECT)
-        return true;
+        return false;
     endObject++;
     if (*endObject == false)
         throw std::runtime_error("Object name is null");
     for (; *endObject && *endObject != '.' && *endObject != '['; endObject++);
     actualNode = actualNode.getObject().at(std::string(it.base(), endObject.base() - it.base()));
-    return false;
+    it = endObject;
+    return true;
 }
 
 const bool jsonhl::Deserializer::____MgetInternal(std::string& buffer, jsonhl::Value& actualNode) {
@@ -47,10 +48,13 @@ const bool jsonhl::Deserializer::____MgetInternal(std::string& buffer, jsonhl::V
             case '[':
                 if (this->____MgetArray(actualNode, ++it) == false)
                     return false;
+                break;
             case '.':
                 if (this->____MgetObject(actualNode, ++it) == false)
                     return false;
+                break;
             default:
+                std::cout << "lol: " << it.base() << " so: " << (int)*it << std::endl;
                 throw std::runtime_error("Expected: '\\0 or '.' or '[' but none appeared "
                         "make sure to start the string with a '.' or '['");
         }
@@ -65,6 +69,8 @@ const jsonhl::Value jsonhl::Deserializer::get(std::string buffer) {
     jsonhl::Value conf = this->_value;
     if (buffer.empty())
         throw std::runtime_error("Buffer is empty in jsonhl::Deserializer::has");
+    if (this->getValue().getType() == jsonhl::Value::ValueType::JSONNULL)
+        throw std::runtime_error("The json has wether only a null value or was not parsed yet");
     if (this->____MgetInternal(buffer, conf) == false)
         throw std::runtime_error("Could not parse buffer in jsonhl::Deserializer::has");
     return conf;
