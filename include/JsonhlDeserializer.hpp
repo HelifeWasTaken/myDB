@@ -23,7 +23,7 @@ namespace jsonhl {
              * @return true Suceeded to read the array
              * @return false Could not find an array object of type given in jsonhl::get or jsonhl::has
              */
-            const bool ____MgetArray(jsonhl::Value& actualNode, std::string::iterator& it);
+            const bool ____MgetArray(jsonhl::Value& actualNode, std::string::iterator& it) const;
 
             /**
              * @brief Read the current value passed at the Object for the getter such as .name if the string was badly written throws
@@ -33,7 +33,7 @@ namespace jsonhl {
              * @return true Suceeded to read the Object
              * @return false Could not find an Object of type given in jsonhl::get or jsonhl::has
              */
-            const bool ____MgetObject(jsonhl::Value& actualNode, std::string::iterator& it);
+            const bool ____MgetObject(jsonhl::Value& actualNode, std::string::iterator& it) const;
 
             /**
              * @brief Iterates over the whole buffer given in jsonhl::get or jsonhl::has to search for a particular node
@@ -43,7 +43,7 @@ namespace jsonhl {
              * @return true Found the node reasearched
              * @return false Did not found the node researched or one of the node was not an object or array type as expected
              */
-            const bool ____MgetInternal(std::string& buffer, jsonhl::Value& actualNode);
+            const bool ____MgetInternal(std::string& buffer, jsonhl::Value& actualNode) const;
 
         public:
             Deserializer();
@@ -61,7 +61,7 @@ namespace jsonhl {
              * @param buffer The string determing how to read the jsonhl::Value
              * @return const Value
              */
-            const Value get(std::string buffer);
+            const Value get(std::string buffer) const;
 
             /**
              * @brief Tells wether the jsonhl::Value exists from a string

@@ -7,7 +7,7 @@
  */
 #include <JsonhlDeserializer.hpp>
 
-const bool jsonhl::Deserializer::____MgetArray(jsonhl::Value& actualNode, std::string::iterator& it) {
+const bool jsonhl::Deserializer::____MgetArray(jsonhl::Value& actualNode, std::string::iterator& it) const {
     std::size_t i = 0;
     double indexArray = 0;
 
@@ -28,7 +28,7 @@ const bool jsonhl::Deserializer::____MgetArray(jsonhl::Value& actualNode, std::s
     return true;
 }
 
-const bool jsonhl::Deserializer::____MgetObject(jsonhl::Value& actualNode, std::string::iterator& it) {
+const bool jsonhl::Deserializer::____MgetObject(jsonhl::Value& actualNode, std::string::iterator& it) const {
     std::string::iterator endObject = it;
 
     if (actualNode.getType() != jsonhl::Value::ValueType::OBJECT)
@@ -42,7 +42,7 @@ const bool jsonhl::Deserializer::____MgetObject(jsonhl::Value& actualNode, std::
     return true;
 }
 
-const bool jsonhl::Deserializer::____MgetInternal(std::string& buffer, jsonhl::Value& actualNode) {
+const bool jsonhl::Deserializer::____MgetInternal(std::string& buffer, jsonhl::Value& actualNode) const {
     for (std::string::iterator it = buffer.begin(); it != buffer.end();) {
         switch (*it) {
             case '[':
@@ -65,7 +65,7 @@ const bool jsonhl::Deserializer::____MgetInternal(std::string& buffer, jsonhl::V
 const jsonhl::Value& jsonhl::Deserializer::getValue() const {
     return this->_value;
 }
-const jsonhl::Value jsonhl::Deserializer::get(std::string buffer) {
+const jsonhl::Value jsonhl::Deserializer::get(std::string buffer) const {
     jsonhl::Value conf = this->_value;
     if (buffer.empty())
         throw std::runtime_error("Buffer is empty in jsonhl::Deserializer::has");

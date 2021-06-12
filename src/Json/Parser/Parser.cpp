@@ -20,7 +20,7 @@ void jsonhl::Parser::loadBuffer(std::string& buffer) {
     this->unload();
     this->_buffer = buffer;
     if (_buffer.empty() == true)
-        throw std::runtime_error("The memory buffer is empty!");
+        throw std::runtime_error("The memory buffer is empty! File: [" + buffer + "] could not be read!");
 }
 
 jsonhl::Value jsonhl::Parser::parse() {
