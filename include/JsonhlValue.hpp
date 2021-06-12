@@ -220,10 +220,10 @@ namespace jsonhl {
     };
 
     void dump(const Value& value);
-    void dump(const Value& value, int& indentationLevel);
-    void dumpObject(const Value::Object& object, int& indentationLevel);
-    void dumpArray(const Value::Array& array, int& indentationLevel);
-    void printPadding(int& indentationLevel);
-    void dumpStr(const std::string& buf);
+    void dump(const Value& value, int& indentationLevel, std::ostream& os);
+    void dumpObject(const Value::Object& object, int& indentationLevel, std::ostream& os);
+    void dumpArray(const Value::Array& array, int& indentationLevel, std::ostream& os);
+    void printPadding(int& indentationLevel, std::ostream& os);
+    void dumpStr(const std::string& buf, std::ostream& os);
 
 };

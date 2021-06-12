@@ -1,71 +1,75 @@
 #include <JsonhlValue.hpp>
 
-void jsonhl::printPadding(int& indentationLevel) {
+void jsonhl::printPadding(int& indentationLevel, std::ostream& os) {
     for (auto i = 0; i < indentationLevel; i++) {
-        std::cout << "    ";
+        os << "    ";
     }
 }
 
-void jsonhl::dumpArray(const jsonhl::Value::Array& array, int& indentationLevel) {
+void jsonhl::dumpArray(const jsonhl::Value::Array& array, int& indentationLevel, std::ostream& os) {
     std::size_t i = 0;
+    jsonhl::Value::ValueType lastType = jsonhl::Value::ValueType::JSONNULL;
 
-    std::cout << "[" << std::endl;
-    indentationLevel++;
-    jsonhl::printPadding(indentationLevel);
+    os << "[";
     while (i != array.size()) {
-        jsonhl::dump(array[i], indentationLevel);
+        jsonhl::dump(array[i], indentationLevel, os);
+        lastType = array[i].getType();
         i++;
-        if (i != array.size())
-            std::cout << ", ";
-    }
-    indentationLevel--;
-    std::cout << "]";
-}
-
-void jsonhl::dumpObject(const jsonhl::Value::Object& object, int& indentationLevel) {
-    auto it = object.begin();
-
-    std::cout << "{" << std::endl;
-    indentationLevel++;
-    while (it != object.end()) {
-        jsonhl::printPadding(indentationLevel);
-        std::cout << "\"" << it->first << "\": ";
-        jsonhl::dump(it->second, indentationLevel);
-        it++;
-        if (it != object.end())
-            std::cout << "," << std::endl;
-    }
-    indentationLevel--;
-    std::cout << std::endl;
-    jsonhl::printPadding(indentationLevel);
-    std::cout << "}";
-}
-
-void jsonhl::dumpStr(const std::string& buf) {
-    std::cout << "\"";
-    for (auto i = 0; i < buf.size(); i++) {
-        switch (buf[i]) {
-            case '\a': std::cout << "\\a"; break;
-            case '\b': std::cout << "\\b"; break;
-            case '\t': std::cout << "\\t"; break;
-            case '\n': std::cout << "\\n"; break;
-            case '\v': std::cout << "\\v"; break;
-            case '\f': std::cout << "\\f"; break;
-            case '\r': std::cout << "\\r"; break;
-            default: std::cout << buf[i]; break;
+        if (i != array.size()) {
+            os << ", ";
+            if (lastType == jsonhl::Value::ValueType::OBJECT) {
+                os << std::endl;
+                jsonhl::printPadding(indentationLevel, os);
+            }
         }
     }
-    std::cout << "\"";
+    os << "]";
 }
 
-void jsonhl::dump(const jsonhl::Value& value, int& indentationLevel) {
+void jsonhl::dumpObject(const jsonhl::Value::Object& object, int& indentationLevel, std::ostream& os) {
+    auto it = object.begin();
+
+    os << "{" << std::endl;
+    indentationLevel++;
+    while (it != object.end()) {
+        jsonhl::printPadding(indentationLevel, os);
+        os << "\"" << it->first << "\": ";
+        jsonhl::dump(it->second, indentationLevel, os);
+        it++;
+        if (it != object.end())
+            os << "," << std::endl;
+    }
+    indentationLevel--;
+    os << std::endl;
+    jsonhl::printPadding(indentationLevel, os);
+    os << "}";
+}
+
+void jsonhl::dumpStr(const std::string& buf, std::ostream& os) {
+    os << "\"";
+    for (auto i = 0; i < buf.size(); i++) {
+        switch (buf[i]) {
+            case '\a': os << "\\a"; break;
+            case '\b': os << "\\b"; break;
+            case '\t': os << "\\t"; break;
+            case '\n': os << "\\n"; break;
+            case '\v': os << "\\v"; break;
+            case '\f': os << "\\f"; break;
+            case '\r': os << "\\r"; break;
+            default: os << buf[i]; break;
+        }
+    }
+    os << "\"";
+}
+
+void jsonhl::dump(const jsonhl::Value& value, int& indentationLevel, std::ostream& os) {
     switch (value.getType()) {
-        case jsonhl::Value::ValueType::ARRAY: jsonhl::dumpArray(value.getArray(), indentationLevel); break;
-        case jsonhl::Value::ValueType::OBJECT: jsonhl::dumpObject(value.getObject(), indentationLevel); break;
-        case jsonhl::Value::ValueType::STRING: jsonhl::dumpStr(value.getStr()); break;
-        case jsonhl::Value::ValueType::BOOL: std::cout << value.getBool(); break;
-        case jsonhl::Value::ValueType::DOUBLE: std::cout << value.getDouble(); break;
-        case jsonhl::Value::ValueType::JSONNULL: std::cout << "null"; break;
+        case jsonhl::Value::ValueType::ARRAY: jsonhl::dumpArray(value.getArray(), indentationLevel, os); break;
+        case jsonhl::Value::ValueType::OBJECT: jsonhl::dumpObject(value.getObject(), indentationLevel, os); break;
+        case jsonhl::Value::ValueType::STRING: jsonhl::dumpStr(value.getStr(), os); break;
+        case jsonhl::Value::ValueType::BOOL: os << value.getBool(); break;
+        case jsonhl::Value::ValueType::DOUBLE: os << value.getDouble(); break;
+        case jsonhl::Value::ValueType::JSONNULL: os << "null"; break;
     }
 }
 
@@ -73,6 +77,6 @@ void jsonhl::dump(const jsonhl::Value& value)
 {
     int indentationLevel = 0;
 
-    jsonhl::dump(value, indentationLevel);
+    jsonhl::dump(value, indentationLevel, std::cout);
     std::cout << std::endl;
 }
