@@ -216,6 +216,14 @@ namespace jsonhl {
              */
             const bool is(const ValueType& type) const;
 
+
     };
+
+    void dump(const Value& value);
+    void dump(const Value& value, int& indentationLevel);
+    void dumpObject(const Value::Object& object, int& indentationLevel);
+    void dumpArray(const Value::Array& array, int& indentationLevel);
+    void printPadding(int& indentationLevel);
+    void dumpStr(const std::string& buf);
 
 };

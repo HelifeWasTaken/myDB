@@ -11,10 +11,10 @@ include_directories(
 	${PROJECT_SOURCE_DIR}/src
 )
 file(GLOB PROJECT_FILES
-	"${PROJECT_SOURCE_DIR}/include/*.hpp"
 	"${PROJECT_SOURCE_DIR}/src/Json/Deserializer/*.cpp"
 	"${PROJECT_SOURCE_DIR}/src/Json/Value/*.cpp"
 	"${PROJECT_SOURCE_DIR}/src/Json/Parser/*.cpp"
+	"${PROJECT_SOURCE_DIR}/src/Json/*.cpp"
 	"${PROJECT_SOURCE_DIR}/main.cpp"
 )
 
