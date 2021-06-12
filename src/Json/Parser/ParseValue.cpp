@@ -8,7 +8,9 @@
 #include <JsonhlParser.hpp>
 
 void jsonhl::Parser::parseValue(jsonhl::Value& conf) {
-    if (this->parseObject(conf) == true) return;
+    this->skipSpaces();
+    if (this->_buffer.at(this->_index) == false) return;
+    else if (this->parseObject(conf) == true) return;
     else if (this->parseBoolean(conf) == true) return;
     else if (this->parseNull(conf) == true) return;
     else if (this->parseString(conf) == true) return;

@@ -31,7 +31,7 @@ bool jsonhl::Parser::parseArray(jsonhl::Value& conf) {
     jsonhl::Value tmp;
     jsonhl::Value::Array arr;
 
-    if (this->_buffer.at(this->_index) != ']')
+    if (this->_buffer.at(this->_index) != '[')
         return false;
     this->_index++;
     this->skipSpaces();

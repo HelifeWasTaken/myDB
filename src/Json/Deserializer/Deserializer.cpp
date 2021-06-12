@@ -11,14 +11,17 @@ void jsonhl::Deserializer::loadFromMemory(std::string buffer) {
     this->unload();
     this->loadBuffer(buffer);
     this->_value = this->parse();
+
 }
 
 void jsonhl::Deserializer::loadFromFile(std::string filename) {
-    this->unload();
     std::string buf;
+
+    this->unload();
     std::getline(std::ifstream(filename), buf, '\0');
     this->loadBuffer(buf);
     this->_value = this->parse();
+
 }
 
 jsonhl::Deserializer::Deserializer() : Parser() {}

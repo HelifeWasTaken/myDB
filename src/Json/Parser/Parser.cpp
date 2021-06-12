@@ -28,6 +28,12 @@ jsonhl::Value jsonhl::Parser::parse() {
 
     if (this->_buffer.empty())
         throw std::runtime_error("You are trying to load a Json from an empty buffer");
-    this->parseValue(value);
+    try {
+        this->parseValue(value);
+    } catch (const std::exception& e) {
+        this->unload();
+        throw e;
+    }
+    this->unload();
     return value;
 }
