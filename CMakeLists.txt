@@ -15,6 +15,9 @@ file(GLOB PROJECT_FILES
 	"${PROJECT_SOURCE_DIR}/src/Json/Value/*.cpp"
 	"${PROJECT_SOURCE_DIR}/src/Json/Parser/*.cpp"
 	"${PROJECT_SOURCE_DIR}/src/Json/*.cpp"
+	"${PROJECT_SOURCE_DIR}/src/DB/*.cpp"
+	"${PROJECT_SOURCE_DIR}/src/DB/CommandHandler/*.cpp"
+	"${PROJECT_SOURCE_DIR}/src/DB/CommandLauncher/*.cpp"
 	"${PROJECT_SOURCE_DIR}/main.cpp"
 )
 
