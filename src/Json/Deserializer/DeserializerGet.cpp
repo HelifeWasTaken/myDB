@@ -24,7 +24,7 @@ const bool jsonhl::Deserializer::____MgetArray(jsonhl::Value& actualNode, std::s
     if (*it == '\0')
         throw std::runtime_error("Digit array getter is wrongly formatted");
     it++;
-    actualNode = actualNode.getArray()[indexArray];
+    actualNode = actualNode.getArray().at(indexArray);
     return true;
 }
 
