@@ -22,7 +22,7 @@ void dbHL::CommandHandler::HandlerLoaderDB() {
 
 void dbHL::CommandHandler::HandlerLoaderFile() {
     if (this->_bufferInputSplitted.size() == 3)
-        this->loadCollection(this->_bufferInputSplitted[2], this->_bufferInputSplitted[3]);
+        this->loadCollection(this->_bufferInputSplitted[1], this->_bufferInputSplitted[2]);
     else
         this->HandlerLoaderUsage();
 }
