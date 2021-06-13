@@ -24,6 +24,9 @@ namespace dbHL {
     void ____MCommandHandlerLauncherExit(CommandHandler& self) {
         self.HandlerExit();
     }
+    void ____MCommandHandlerLauncherSave(CommandHandler& self) {
+        self.HandlerSave();
+    }
 
     void ____MCommandHandlerLauncher(std::string& buf, CommandHandler& self) {
         static const std::map<std::string, std::function<void (CommandHandler&)>> launchers = {
@@ -32,12 +35,17 @@ namespace dbHL {
             { "collections", ____MCommandHandlerLauncherCollection },
             { "help", ____MCommandHandlerLauncherHelp },
             { "exit", ____MCommandHandlerLauncherExit },
+            { "save", ____MCommandHandlerLauncherSave }
         };
 
-        if (launchers.contains(buf) == false) {
-            self.HandlerCMD();
-            return;
+        try {
+            if (launchers.contains(buf) == false) {
+                self.HandlerCMD();
+                return;
+            }
+            launchers.at(buf)(self);
+        } catch (std::exception& e) {
+            std::cerr << e.what() << std::endl;
         }
-        launchers.at(buf)(self);
     }
 };

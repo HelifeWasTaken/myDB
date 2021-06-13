@@ -26,6 +26,9 @@ namespace dbHL {
 
             void loadCollection(const std::string& name, const std::string& file);
 
+            void saveDB(std::string& path);
+            void loadDB(std::string& path);
+
             CommandLauncher();
             ~CommandLauncher();
     };
@@ -49,6 +52,8 @@ namespace dbHL {
             void HandlerCollection();
             void HandlerCMD();
             void HandlerUsage();
+            void HandlerSaveUsage();
+            void HandlerSave();
             void HandlerExit();
 
         public:
@@ -60,6 +65,7 @@ namespace dbHL {
     void ____MCommandHandlerLauncherCollection(CommandHandler& self);
     void ____MCommandHandlerLauncherHelp(CommandHandler& self);
     void ____MCommandHandlerLauncherExit(CommandHandler& self);
+    void ____MCommandHandlerLauncherSave(CommandHandler& self);
 
     void ____MCommandHandlerLauncher(std::string& buf, CommandHandler& self);
 };

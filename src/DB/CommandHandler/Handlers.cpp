@@ -80,10 +80,25 @@ void dbHL::CommandHandler::HandlerCMD() {
                   << std::endl;
 }
 
+void dbHL::CommandHandler::HandlerSaveUsage() {
+    std::cerr << "Usage: save [filepath]" << std::endl;
+}
+
+void dbHL::CommandHandler::HandlerSave() {
+    switch (this->_bufferInputSplitted.size()) {
+        case 2:
+            this->saveDB(this->_bufferInputSplitted[1]);
+            return;
+        default:
+            this->HandlerSaveUsage();
+    }
+}
+
 void dbHL::CommandHandler::HandlerUsage() {
     this->HandlerLoaderUsage();
     this->HandlerCollectionUsage();
     this->HandlerDumpUsage();
+    this->HandlerSaveUsage();
 }
 
 void dbHL::CommandHandler::HandlerExit() {
