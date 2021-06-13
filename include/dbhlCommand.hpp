@@ -31,6 +31,8 @@ namespace dbHL {
 
             void RenameCollection(std::string& oldName, std::string& newName);
 
+            void DeleteCollection(std::string& collectionName);
+
             CommandLauncher();
             ~CommandLauncher();
     };
@@ -65,6 +67,9 @@ namespace dbHL {
             void HandlerSaveUsage();
             void HandlerSave();
 
+            void HandlerDeleteUsage();
+            void HandlerDelete();
+
             void HandlerExit();
 
             void HandlerUsage();
@@ -76,10 +81,12 @@ namespace dbHL {
     void ____MCommandHandlerLauncherLoaderDB(CommandHandler& self);
     void ____MCommandHandlerLauncherLoaderUsage(CommandHandler& self);
     void ____MCommandHandlerLauncherLoaderFile(CommandHandler& self);
+    void ____MCommandHandlerLauncherLoaderMemory(CommandHandler& self);
     void ____MCommandHandlerLauncherDump(CommandHandler& self);
     void ____MCommandHandlerLauncherCollection(CommandHandler& self);
     void ____MCommandHandlerLauncherHelp(CommandHandler& self);
     void ____MCommandHandlerLauncherRename(CommandHandler& self);
+    void ____MCommandHandlerLauncherDelete(CommandHandler& self);
     void ____MCommandHandlerLauncherExit(CommandHandler& self);
     void ____MCommandHandlerLauncherSave(CommandHandler& self);
 

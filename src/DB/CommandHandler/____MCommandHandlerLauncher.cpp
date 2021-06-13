@@ -9,6 +9,20 @@
 #include <dbhlCommand.hpp>
 
 namespace dbHL {
+
+    static const std::map<std::string, std::function<void (CommandHandler&)>> DBLAUNCHERS = {
+        { "loadFile", ____MCommandHandlerLauncherLoaderFile },
+        { "loadMemory", ____MCommandHandlerLauncherLoaderMemory },
+        { "loadDB", ____MCommandHandlerLauncherLoaderDB },
+        { "dump", ____MCommandHandlerLauncherDump },
+        { "collections", ____MCommandHandlerLauncherCollection },
+        { "rename", ____MCommandHandlerLauncherRename },
+        { "delete", ____MCommandHandlerLauncherDelete },
+        { "help", ____MCommandHandlerLauncherHelp },
+        { "exit", ____MCommandHandlerLauncherExit },
+        { "save", ____MCommandHandlerLauncherSave }
+    };
+
     void ____MCommandHandlerLauncherLoaderDB(CommandHandler& self) {
         self.HandlerLoaderDB();
     }
@@ -37,25 +51,17 @@ namespace dbHL {
         self.HandlerRename();
     }
 
-    void ____MCommandHandlerLauncher(std::string& buf, CommandHandler& self) {
-        static const std::map<std::string, std::function<void (CommandHandler&)>> launchers = {
-            { "loadFile", ____MCommandHandlerLauncherLoaderFile },
-            { "loadMemory", ____MCommandHandlerLauncherLoaderMemory },
-            { "loadDB", ____MCommandHandlerLauncherLoaderDB },
-            { "dump", ____MCommandHandlerLauncherDump },
-            { "collections", ____MCommandHandlerLauncherCollection },
-            { "rename", ____MCommandHandlerLauncherRename },
-            { "help", ____MCommandHandlerLauncherHelp },
-            { "exit", ____MCommandHandlerLauncherExit },
-            { "save", ____MCommandHandlerLauncherSave }
-        };
+    void ____MCommandHandlerLauncherDelete(CommandHandler& self) {
+        self.HandlerDelete();
+    }
 
+    void ____MCommandHandlerLauncher(std::string& buf, CommandHandler& self) {
         try {
-            if (launchers.contains(buf) == false) {
+            if (DBLAUNCHERS.contains(buf) == false) {
                 self.HandlerCMD();
                 return;
             }
-            launchers.at(buf)(self);
+            DBLAUNCHERS.at(buf)(self);
         } catch (std::exception& e) {
             std::cerr << e.what() << std::endl;
         }

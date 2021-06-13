@@ -23,3 +23,11 @@ void dbHL::CommandLauncher::RenameCollection(std::string& oldName, std::string& 
     this->_collections.insert(std::make_pair(newName, toRename->second));
     this->_collections.erase(toRename);
 }
+
+void dbHL::CommandLauncher::DeleteCollection(std::string& collectionName) {
+    const auto& toDelete = this->_collections.find(collectionName);
+
+    if (toDelete == this->_collections.end())
+        throw std::runtime_error("[" + collectionName + "] Does not exist in the DB");
+    this->_collections.erase(toDelete);
+}
