@@ -54,7 +54,6 @@ const bool jsonhl::Deserializer::____MgetInternal(std::string& buffer, jsonhl::V
                     return false;
                 break;
             default:
-                std::cout << "lol: " << it.base() << " so: " << (int)*it << std::endl;
                 throw std::runtime_error("Expected: '\\0 or '.' or '[' but none appeared "
                         "make sure to start the string with a '.' or '['");
         }

@@ -13,7 +13,8 @@ void dbHL::CommandLauncher::dumpFromCollection(const char *collection, const cha
     try {
         v = this->_collections.at(collection).get(path);
     } catch (std::exception& e) {
-        std::cerr << "[" << e.what() << "]: There was no: [" << collection << "]" << "or [" << path << "]" << std::endl;
+        std::cerr << "[" << e.what() << "]: There was no: ["
+            << collection << "] or [" << path << "]" << std::endl;
         return;
     }
     jsonhl::dump(v);
@@ -47,13 +48,17 @@ void dbHL::CommandLauncher::collectionsHead() const {
 void dbHL::CommandLauncher::loadCollection(const std::string& name, const std::string& file) {
     jsonhl::Deserializer des;
 
-    std::cout << "File: " << file << std::endl;
+    if (this->_collections.contains(name) == true) {
+        std::cerr << "[" << name << "] already exists in the DB" << std::endl;
+        return;
+    }
     try {
         des.loadFromFile(file);
     } catch (std::exception& e) {
         std::cerr << "[" << e.what() << "]" << std::endl;
         return;
     }
+    std::cout << "File: [" << file << "] sucessfully loaded as [" << name << "]" << std::endl;
     this->_collections.insert(std::make_pair(name, des));
 }
 

@@ -14,15 +14,15 @@ void jsonhl::Parser::____MJsonReadString(std::string& buffer) {
             if (!this->_buffer.at(this->_index))
                 throw std::runtime_error("Got out of bounds while parsing escape code");
             switch (this->_buffer.at(this->_index)) {
-            case '"': buffer.append("\""); break;
-            case '\\': buffer.append("\\"); break;
-            case '/': buffer.append("/"); break;
-            case 'b': buffer.append("\b"); break;
-            case 'f': buffer.append("\f"); break;
-            case 'n': buffer.append("\n"); break;
-            case 'r': buffer.append("\r"); break;
-            case 't': buffer.append("\t"); break;
-            default: buffer.append(1, this->_buffer.at(this->_index)); break;
+                case '"': buffer.append("\""); break;
+                case '\\': buffer.append("\\"); break;
+                case '/': buffer.append("/"); break;
+                case 'b': buffer.append("\b"); break;
+                case 'f': buffer.append("\f"); break;
+                case 'n': buffer.append("\n"); break;
+                case 'r': buffer.append("\r"); break;
+                case 't': buffer.append("\t"); break;
+                default: buffer.append(1, this->_buffer.at(this->_index)); break;
             }
             this->_index++;
             continue;

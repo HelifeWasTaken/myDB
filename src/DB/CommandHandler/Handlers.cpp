@@ -8,8 +8,8 @@
 #include <dbhlCommand.hpp>
 
 void dbHL::CommandHandler::HandlerLoaderUsage() {
-    std::cout << "Usage: load file [name] [filename]" << std::endl;
-    std::cout << "Usage: load memory [name] (then press enter and type the json until you type in whole letters EOF)" << std::endl;
+    std::cerr << "Usage: load file [name] [filename]" << std::endl;
+    std::cerr << "Usage: load memory [name] (then press enter and type the json until you type in whole letters EOF)" << std::endl;
 }
 
 void dbHL::CommandHandler::HandlerLoader() {
@@ -31,8 +31,8 @@ void dbHL::CommandHandler::HandlerLoader() {
 }
 
 void dbHL::CommandHandler::HandlerDumpUsage() {
-    std::cout << "Usage: dump [collection name]" << std::endl;
-    std::cout << "Usage: dump [collection name] [path]" << std::endl;
+    std::cerr << "Usage: dump [collection name]" << std::endl;
+    std::cerr << "Usage: dump [collection name] [path]" << std::endl;
 }
 
 void dbHL::CommandHandler::HandlerDump() {
@@ -49,7 +49,7 @@ void dbHL::CommandHandler::HandlerDump() {
 }
 
 void dbHL::CommandHandler::HandlerCollectionUsage() {
-    std::cout << "Usage: collections" << std::endl;
+    std::cerr << "Usage: collections" << std::endl;
 }
 
 void dbHL::CommandHandler::HandlerCollection() {
@@ -70,12 +70,14 @@ void dbHL::CommandHandler::HandlerCMD() {
                     std::cerr << "No \"" << this->_bufferInputSplitted[1] << "\" directory found" << std::endl;
                 break;
             default:
-                std::cout << "Usage: cd [path]" << std::endl; break;
+                std::cerr << "Usage: cd [path]" << std::endl; break;
         }
         return;
     }
     if (std::system(this->_bufferInput.c_str()) != 0)
-        std::cout << "Command not recognized: [load|dump|collections|help|exit]" << std::endl;
+        std::cerr << "Command [" << this->_bufferInput.c_str()
+                  << "] not recognized: [load|dump|collections|help|exit]"
+                  << std::endl;
 }
 
 void dbHL::CommandHandler::HandlerUsage() {

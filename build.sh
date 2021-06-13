@@ -1,5 +1,15 @@
 if [ ! -f main.cpp ]; then
-	echo -e "int main()\n{\n    return 0;\n}" > main.cpp
+	cat  << EOF > main.cpp
+#include <JsonhlDeserializer.hpp>
+#include <dbhlCommand.hpp>
+
+int main(int ac, char **av)
+{
+    dbHL::CommandHandler handler;
+    handler.launchDB();
+    return 0;
+}
+EOF
 fi
 
 rm -f myDB

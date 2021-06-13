@@ -16,6 +16,7 @@ const char *jsonhl::Value::____MJsonValueToStr(const jsonhl::Value::ValueType &t
         case STRING: return "string";
         case OBJECT: return "object";
         case ARRAY: return "array";
+        case JSONNULL: return "null";
     }
     return "N/A";
 }
