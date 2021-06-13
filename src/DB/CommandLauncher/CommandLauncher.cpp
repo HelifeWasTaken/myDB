@@ -58,24 +58,23 @@ void dbHL::CommandLauncher::loadCollection(const std::string& name, const std::s
     this->_collections.insert(std::make_pair(name, des));
 }
 
-static std::string getFileName(std::string& filePath, bool withExtension = false, char seperator = '/')
+static std::string getFileName(std::string& filePath, char seperator = '/')
 {
-    std::size_t dotPos = filePath.rfind('.');
     std::size_t sepPos = filePath.rfind(seperator);
+    std::string filePathtmp;
     if(sepPos != std::string::npos)
-        return filePath.substr(sepPos + 1, filePath.size() - (withExtension || dotPos != std::string::npos ? 1 : dotPos));
-    return filePath;
+        filePathtmp = filePath.substr(sepPos + 1, filePath.size());
+    else
+        filePathtmp = filePath;
+    std::size_t dotPos = filePathtmp.rfind('.');
+    if (dotPos != std::string::npos)
+        return filePathtmp.substr(0, dotPos);
+    return filePathtmp;
 }
 
 void dbHL::CommandLauncher::loadDB(std::string& path) {
     struct stat st;
 
-    const auto& entry = std::filesystem::directory_iterator(path);
-
-    if (entry->exists() == false || entry->is_directory() == false) {
-        throw std::runtime_error("[" + path + "] exists and is not a directory aborting...");
-    } else
-        throw std::runtime_error("std::filesystem: Failed to load" + path);
     for (const auto& dirs : std::filesystem::directory_iterator(path)) {
         std::string fileString = dirs.path().string();
         this->loadCollection(getFileName(fileString), fileString);
@@ -110,5 +109,15 @@ void dbHL::CommandLauncher::saveDB(std::string& path) {
     }
 }
 
+void dbHL::CommandLauncher::RenameCollection(std::string& oldName, std::string& newName) {
+    const auto& toRename = this->_collections.find(oldName);
+
+    if (toRename == this->_collections.end())
+        throw std::runtime_error("[" + oldName + "] Does not exist in the DB");
+    if (this->_collections.find(newName) != this->_collections.end())
+        throw std::runtime_error("[" + newName + "] Already exist in the DB");
+    this->_collections.insert(std::make_pair(newName, toRename->second));
+    this->_collections.erase(toRename);
+}
 dbHL::CommandLauncher::CommandLauncher()  {}
 dbHL::CommandLauncher::~CommandLauncher() {}
