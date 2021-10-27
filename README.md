@@ -4,7 +4,7 @@ Todo:
 - Json Deserializer Done
 - Database Handler Done
 
-```json
+```js
 ➜  myDB git:(main) ✗ ./myDB
 > ls
 build     castle.json     compile_flags.txt  input  lol.json  myDB   README.md  vgcore.132709
