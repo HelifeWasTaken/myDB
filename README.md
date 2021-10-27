@@ -1,7 +1,6 @@
 # myDB
 
-This is not meant to be used as a real database it was just fun to learn how to parse json, make directories and load them recursively
-+ Doing json get queries
+This is not meant to be used as a real database it was just fun to learn how to parse json, make directories and load them recursively and doing json get queries
 
 Yea this is just a project made for fun with a lot of possibles improvements notably in the Database handling 
 
