@@ -1,5 +1,10 @@
 # myDB
-Todo:
+
+This is not meant to be used as a real database it was just fun to learn how to parse json, make directories and load them recursively
++ Doing json get queries
+
+Yea this is just a project made for fun with a lot of possibles improvements notably in the Database handling 
+
 - Json Parser Done
 - Json Deserializer Done
 - Database Handler Done
